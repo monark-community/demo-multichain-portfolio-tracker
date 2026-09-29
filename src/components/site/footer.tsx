@@ -49,11 +49,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
       </div>
       <div className="border-t">
         <div className="mx-auto flex max-w-[1320px] flex-col gap-2 px-4 py-4 text-[0.8rem] text-muted-foreground sm:px-6 md:flex-row md:items-center md:justify-between">
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <span className="label-mono text-foreground">{dict.common.demoBadge}</span>
-            <span aria-hidden="true">·</span>
-            <span>{dict.common.moneyDisclaimer}</span>
-          </p>
+          <p className="label-mono text-foreground">{dict.common.demoBadge}</p>
           <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <span>
               © {new Date().getFullYear()} {dict.footer.rights}

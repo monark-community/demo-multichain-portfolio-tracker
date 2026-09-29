@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import type { Locale } from "@/i18n/config"
 
+import { DemoChip } from "./demo-chip"
 import { HeaderAction } from "./header-action"
 import { LocaleSwitch } from "./locale-switch"
 import { Wordmark } from "./logo"
@@ -27,6 +28,7 @@ export function MobileMenu({
     close: string
     nav: string
     launch: string
+    demo: string
     theme: string
     language: string
     names: Record<Locale, string>
@@ -56,6 +58,7 @@ export function MobileMenu({
           />
         </nav>
         <div className="flex flex-col gap-4 border-t px-5 py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
+          <DemoChip label={labels.demo} className="self-start" />
           <div className="flex items-center justify-between gap-3">
             <LocaleSwitch locale={locale} label={labels.language} names={labels.names} />
             <ThemeToggle label={labels.theme} />

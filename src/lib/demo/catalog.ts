@@ -145,9 +145,10 @@ export const COLD_WALLET: WalletProfile = {
   label: { en: "Cold storage", fr: "Stockage à froid" },
   tag: "cold",
   balances: [
-    ["eth-sepolia", "tWBTC", 0.1825, 41800],
-    ["eth-sepolia", "tETH", 4.12, 1985],
-    ["arb-sepolia", "tWBTC", 0.04, 47250],
+    ["eth-sepolia", "tWBTC", 0.1, 41800],
+    ["eth-sepolia", "tETH", 1.2, 1985],
+    ["arb-sepolia", "tWBTC", 0.06, 47250],
+    ["base-sepolia", "tWBTC", 0.045, 55900],
   ],
   nfts: [],
   activity: 12,

@@ -53,7 +53,7 @@ const en = {
     hero: {
       eyebrow: "Multichain portfolio tracker",
       title: "Every wallet, every chain, one honest number.",
-      sub: "MultiTrack reads your wallets on five networks, merges the same asset wherever it lives and shows what you own, what it cost and what changed. Read-only: it never asks for a key.",
+      sub: "MultiTrack reads every wallet on five networks and merges each asset into one position. Read-only: it never asks for a key.",
       primary: "Open the demo dashboard",
       secondary: "How it reads your chains",
       cardTotal: "Total across 2 wallets",
@@ -63,7 +63,7 @@ const en = {
     },
     problem: {
       title: "Your portfolio is already multichain. Your tools aren't.",
-      body: "Three wallets, five networks, one spreadsheet that's wrong by Friday. Explorers show one address on one chain; exchanges show only what they hold.",
+      body: "Three wallets, five networks, one spreadsheet that's wrong by Friday.",
       stats: [
         { value: "5", label: "explorers to check" },
         { value: "3", label: "wallets to add up" },
@@ -73,7 +73,7 @@ const en = {
     strata: {
       eyebrow: "The strata band",
       title: "Every network is a layer. Your total is the rock.",
-      body: "MultiTrack draws your portfolio as one band. Each layer is a network, sized by what you hold there. Tap a layer and the whole dashboard follows; if a network is slow, its layer says so instead of quietly dropping to zero.",
+      body: "Each layer is a network, sized by what you hold there. A slow network says so instead of dropping to zero.",
       stale: "Stale: last good read 2 h ago",
       photoAlt: "Tilted layers of volcanic rock, each band a different shade of grey and brown",
     },
@@ -116,7 +116,7 @@ const en = {
     tax: {
       eyebrow: "Exports",
       title: "Tax season, minus the marathon.",
-      body: "Pick a year and a method, ACB or FIFO. MultiTrack prices every disposal at its time and hands you realized gains in one CSV your accountant can open.",
+      body: "Pick a year and ACB or FIFO. Get realized gains in one CSV.",
       cta: "Try the export",
       photoAlt: "A person stretching at a desk lit by a lamp at the end of a long day",
       file: "multitrack-realized-gains-2025-acb.csv",
@@ -150,37 +150,36 @@ const en = {
     },
     closing: {
       title: "Open the dashboard. It already has a portfolio in it.",
-      body: "Connect the demo wallet, watch five networks sync, then break one on purpose and see what MultiTrack does about it.",
+      body: "Connect the demo wallet, watch five networks sync, then break one on purpose.",
       cta: "Open the demo dashboard",
     },
   },
   how: {
     eyebrow: "How it works",
     title: "Read-only by design, honest about freshness.",
-    intro:
-      "MultiTrack never holds your assets and never signs a transaction. It reads public data for the addresses you track, network by network, turns it into one ledger and prices it. Here is each step, and what happens when one fails.",
+    intro: "MultiTrack reads public data, network by network, and never signs anything. Here is each step, and what happens when one fails.",
     pipelineTitle: "From five networks to one number",
     pipelineAria: "Diagram: wallets are read by one reader per network, normalized, priced, then shown as one portfolio",
     steps: [
       {
         title: "Wallets",
-        body: "You connect one wallet with a free sign-in, or paste any address to watch it. MultiTrack stores the address and a label, nothing else.",
+        body: "Connect one wallet with a free sign-in, or paste any address to watch it.",
       },
       {
         title: "Network readers",
-        body: "One reader per network asks for balances, token transfers and NFT events for every tracked address, and records the block height it read at.",
+        body: "One reader per network fetches balances, transfers and NFTs, and records the block it read at.",
       },
       {
         title: "Normalize",
-        body: "Tokens are matched across networks (tUSDC on Base is the same asset as tUSDC on Arbitrum), amounts are scaled to their decimals and transactions get one shared vocabulary.",
+        body: "tUSDC on Base and on Arbitrum become one asset; every transaction gets one shared vocabulary.",
       },
       {
         title: "Price",
-        body: "Every balance gets a current price and every past transaction gets the price at its own time, which is what cost basis and tax exports need.",
+        body: "Balances get today's price; past transactions get the price at their own time, for cost basis.",
       },
       {
         title: "Your view",
-        body: "The strata band, positions, activity and exports are all views of that one ledger, so the numbers always agree with each other.",
+        body: "Band, positions, activity and exports read one ledger, so the numbers always agree.",
       },
     ],
     diagram: {
@@ -200,17 +199,15 @@ const en = {
       items: ["Private keys or seed phrases", "Permission to move funds", "Token approvals or signatures beyond sign-in", "Data you didn't ask it to track"],
     },
     freshTitle: "Freshness and failures",
-    freshBody:
-      "Networks go down, RPC endpoints time out, indexers fall behind. MultiTrack shows each network's state instead of pretending everything is live.",
+    freshBody: "Each network shows its real state instead of pretending everything is live.",
     states: [
       { name: "Queued", body: "Waiting for its turn in the sweep." },
       { name: "Reading", body: "Blocks are being read; the counter shows how far it got." },
       { name: "Synced", body: "Read at a known block and time, shown next to the network." },
-      { name: "Stale", body: "The last read failed. Balances stay at the last good read, hatched, with its time and a retry." },
+      { name: "Stale", body: "The last read failed. Balances stay at the last good read, hatched, with a retry." },
     ],
     devTitle: "For developers: swap the demo for real chains",
-    devBody:
-      "Everything simulated lives behind a small typed data layer in src/lib/demo: networks, balances, activity, prices and the sync engine. Replace those functions with viem clients, an indexer and a price API, and the UI doesn't change.",
+    devBody: "Everything simulated sits behind a typed data layer in src/lib/demo. Swap it for viem, an indexer and a price API; the UI stays.",
     devRepo: "Read the source",
     cta: "See it work in the demo",
   },
@@ -235,8 +232,7 @@ const en = {
   pricing: {
     eyebrow: "Internal · not linked",
     title: "Free to look, paid to file.",
-    intro:
-      "Viewing a portfolio stays free: that is what people expect from a tracker and how trust is earned. MultiTrack charges where the value is concrete: tax season and record keeping. It is read-only, so there is no transaction fee to take.",
+    intro: "Viewing stays free; MultiTrack charges where the value is concrete: tax season and record keeping.",
     perMonth: "/ month",
     popular: "Where revenue comes from",
     tiers: [
@@ -291,7 +287,7 @@ const en = {
     gate: {
       eyebrow: "Read-only sign-in",
       title: "See every wallet in one place",
-      body: "Connect a demo wallet to sign in read-only. MultiTrack will read five test networks and build your portfolio.",
+      body: "Sign in read-only with the demo wallet. MultiTrack reads five test networks.",
       seesTitle: "What MultiTrack will see",
       sees: ["Your public address", "Balances and history on 5 test networks", "Never your keys, never your funds"],
       rejected: "You declined the sign-in. Nothing was shared.",
@@ -483,8 +479,7 @@ const en = {
       emptyBody: "Paste an address below to watch it. Watching needs no signature.",
       form: {
         title: "Track another wallet",
-        body: "Paste any address to watch it read-only. MultiTrack looks it up on every network.",
-        address: "Wallet address",
+          address: "Wallet address",
         placeholder: "0x…",
         samples: "Try a sample",
         sampleTrading: "A trading wallet",
@@ -498,7 +493,6 @@ const en = {
         found: "Found activity on {count} networks · {value}",
         foundOne: "Found activity on 1 network · {value}",
         empty: "No activity on any supported network.",
-        emptyBody: "It may be new, or used on a network MultiTrack doesn't read yet.",
         failed: "We couldn't reach {network}. Try again in a moment.",
         retryLookup: "Retry lookup",
         name: "Name it",
@@ -512,15 +506,14 @@ const en = {
     },
     export: {
       title: "Export for taxes",
-      intro: "A clean record of the year, priced at the time of each transaction.",
       year: "Tax year",
       yearToDate: "{year} to date",
       wallets: "Wallets",
       method: "Cost-basis method",
       acb: "ACB (average cost)",
-      acbBody: "Pools every purchase of an asset into one average. Used in Canada.",
+      acbBody: "One average cost per asset. Used in Canada.",
       fifo: "FIFO",
-      fifoBody: "First in, first out: the oldest units are sold first. Used in the US and elsewhere.",
+      fifoBody: "Oldest units are sold first. Used in the US.",
       report: "Report",
       kinds: {
         gains: "Realized gains",
@@ -540,7 +533,6 @@ const en = {
         compute: "Computing gains with {method}",
       },
       failedTitle: "{count} transactions had no price at their time.",
-      failedBody: "The price source had a gap for those hours. You can use the nearest hourly price instead; the report will say so.",
       useNearest: "Use the nearest hourly price and retry",
       readyTitle: "Your report is ready",
       readyBody: "{rows} rows · {file}",

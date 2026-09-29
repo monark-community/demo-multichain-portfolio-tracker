@@ -60,7 +60,7 @@ export function NftGrid() {
               image={artwork(n.seed)}
               imageAlt=""
               collection={n.collection}
-              className="h-full max-w-none gap-0 rounded-xl py-0 ring-border"
+              className="max-w-none gap-0 rounded-xl py-0 ring-border"
               price={usd(locale, n.estimateUsd)}
               priceSecondary={d.holdings.nftEstimate}
               collectionBadge={

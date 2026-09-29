@@ -3,6 +3,7 @@ import Link from "next/link"
 import { href, type Locale } from "@/i18n/config"
 import type { Dictionary } from "@/i18n"
 
+import { DemoChip } from "./demo-chip"
 import { HeaderAction } from "./header-action"
 import { LocaleSwitch } from "./locale-switch"
 import { Wordmark } from "./logo"
@@ -28,6 +29,7 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
           <NavLinks items={items} className="flex items-center gap-1" />
         </nav>
         <div className="ml-auto hidden items-center gap-2 md:flex">
+          <DemoChip label={dict.common.demoBadge} className="hidden lg:inline-flex" />
           <LocaleSwitch locale={locale} label={dict.common.language} names={names} />
           <ThemeToggle label={dict.common.theme} />
           <HeaderAction appHref={appHref} launchLabel={dict.common.openDemo} />
@@ -43,6 +45,7 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
               close: dict.common.close,
               nav: dict.nav.label,
               launch: dict.common.openDemo,
+              demo: dict.common.demoBadge,
               theme: dict.common.theme,
               language: dict.common.language,
               names,

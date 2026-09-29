@@ -102,7 +102,7 @@ export function ActivityView() {
   return (
     <div>
       <PageTitle title={d.activity.title} sub={t(d.activity.summary, { count: all.length, networks: networksUsed })} />
-      <section aria-label={d.activity.searchLabel} className="mb-4 space-y-3 rounded-xl border bg-card p-3 sm:p-4">
+      <section aria-label={d.holdings.filters} className="mb-4 space-y-3 rounded-xl border bg-card p-3 sm:p-4">
         <div className="relative">
           <SearchIcon className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
           <Input
@@ -185,7 +185,7 @@ export function ActivityView() {
           <>
             {groups.map((g) => (
               <div key={g.key}>
-                <h2 className="sticky top-16 z-10 flex items-center justify-between border-b bg-muted/95 px-4 py-1.5 text-xs font-semibold">
+                <h2 className="flex items-center justify-between border-b bg-muted px-4 py-1.5 text-xs font-semibold">
                   <span>{g.label}</span>
                   <span className="font-mono font-normal text-muted-foreground">{t(d.activity.txCount, { count: g.items.length })}</span>
                 </h2>

@@ -69,7 +69,7 @@ export function Panel({
   return (
     <section aria-labelledby={title && id ? id : undefined} className={cn("rounded-xl border bg-card", className)}>
       {(title || action) && (
-        <div className="flex items-center justify-between gap-3 border-b px-4 py-3">
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b px-4 py-3">
           {title && (
             <h2 id={id} className="font-bold">
               {title}

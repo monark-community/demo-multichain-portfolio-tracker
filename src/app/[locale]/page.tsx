@@ -1,4 +1,4 @@
-import { ArrowRightIcon, FileSpreadsheetIcon, PlusIcon } from "lucide-react"
+import { ArrowRightIcon, FileSpreadsheetIcon } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
@@ -44,7 +44,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       {/* Hero */}
       <section className="relative overflow-hidden border-b">
         <div className="contour pointer-events-none absolute inset-0 opacity-70 [mask-image:linear-gradient(to_left,black,transparent_70%)]" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-[1320px] gap-10 px-4 pt-12 pb-16 sm:px-6 md:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.02fr)] lg:items-center lg:gap-14 lg:pt-20 lg:pb-24">
+        <div className="relative mx-auto grid max-w-[1320px] grid-cols-1 gap-10 px-4 pt-12 pb-16 sm:px-6 md:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.02fr)] lg:items-center lg:gap-14 lg:pt-20 lg:pb-24">
           <div>
             <p className="label-mono text-ochre-ink">{h.hero.eyebrow}</p>
             <h1 className="mt-4 max-w-[14ch] text-[clamp(2.4rem,6vw,4.25rem)] leading-[1.02] font-extrabold tracking-[-0.035em] text-balance">
@@ -62,7 +62,6 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
                 <Link href={href(locale, "/how-it-works")}>{h.hero.secondary}</Link>
               </Button>
             </div>
-            <p className="label-mono mt-6 text-muted-foreground">{dict.common.demoBadge}</p>
           </div>
           <HeroCard
             total={tot.valueUsd}
@@ -88,7 +87,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
 
       {/* Problem */}
       <section className="bg-foreground text-background">
-        <div className="mx-auto grid max-w-[1320px] gap-10 px-4 py-14 sm:px-6 md:py-20 lg:grid-cols-[1.2fr_1fr] lg:items-end">
+        <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-10 px-4 py-14 sm:px-6 md:py-20 lg:grid-cols-[1.2fr_1fr] lg:items-end">
           <div>
             <h2 className="max-w-[20ch] text-[clamp(1.75rem,3.5vw,2.6rem)] leading-[1.08] font-extrabold tracking-[-0.03em] text-balance">
               {h.problem.title}
@@ -111,7 +110,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
 
       {/* Strata */}
       <section className="border-b">
-        <div className="mx-auto grid max-w-[1320px] gap-10 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-2 lg:items-center">
+        <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-10 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-2 lg:items-center">
           <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
             <Image
               src={PHOTOS.strata.src}
@@ -153,8 +152,8 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
           <h2 className="mt-3 max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] leading-[1.1] font-extrabold tracking-[-0.03em] text-balance">
             {h.features.title}
           </h2>
-          <ul className="mt-10 grid gap-4 md:grid-cols-2">
-            {h.features.items.map((f, i) => (
+          <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
+            {h.features.items.slice(0, 3).map((f, i) => (
               <li key={f.title} className="flex flex-col overflow-hidden rounded-xl border bg-card">
                 <div className="border-b bg-background/70 p-4 sm:p-5">
                   <FeatureMini kind={i} labels={h.features.mini} locale={locale} />
@@ -171,7 +170,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
 
       {/* Tax */}
       <section className="border-b">
-        <div className="mx-auto grid max-w-[1320px] gap-10 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-2 lg:items-center">
+        <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-10 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-2 lg:items-center">
           <div className="lg:order-2">
             <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
               <Image
@@ -207,25 +206,6 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
                 <ArrowRightIcon aria-hidden="true" />
               </Link>
             </Button>
-            <p className="mt-3 text-xs text-muted-foreground">{dict.common.taxDisclaimer}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="border-b">
-        <div className="mx-auto grid max-w-[1320px] gap-8 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-[1fr_1.6fr]">
-          <h2 className="text-[clamp(1.75rem,3.5vw,2.5rem)] leading-[1.1] font-extrabold tracking-[-0.03em] text-balance">{h.faq.title}</h2>
-          <div className="divide-y border-y">
-            {h.faq.items.map((f) => (
-              <details key={f.q} className="group">
-                <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 text-left font-semibold [&::-webkit-details-marker]:hidden">
-                  {f.q}
-                  <PlusIcon className="size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-45" aria-hidden="true" />
-                </summary>
-                <p className="pb-5 text-muted-foreground">{f.a}</p>
-              </details>
-            ))}
           </div>
         </div>
       </section>

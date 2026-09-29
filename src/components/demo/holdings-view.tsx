@@ -6,7 +6,9 @@ import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
+import { TokenAmount } from "@/components/ui/token-amount"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { intlLocale } from "@/i18n/config"
 import { t } from "@/i18n/t"
 import { useDict } from "@/i18n/provider"
 import {
@@ -14,6 +16,8 @@ import {
   network,
   NETWORKS,
   positions as toPositions,
+  toBaseUnits,
+  TOKENS,
   type Horizon,
   type NetworkId,
   type Position,
@@ -190,7 +194,7 @@ export function HoldingsView() {
                         </span>
                         <span className="num hidden text-right text-sm md:block">
                           {usd(locale, pos.price)}
-                          <Delta value={pos.change24hPct} label={pct(locale, pos.change24hPct, true)} className="block text-xs" />
+                          <span className="block"><Delta value={pos.change24hPct} label={pct(locale, pos.change24hPct, true)} className="text-xs" /></span>
                         </span>
                         <span className="num hidden text-right font-mono text-sm md:block">{amount(locale, pos.amount)}</span>
                         <span className="num text-right text-sm font-semibold">
@@ -240,16 +244,24 @@ function PositionDetail({ id, pos, walletLabel }: { id: string; pos: Position; w
         </div>
         <ul className="mt-2 divide-y rounded-lg border bg-card">
           {pos.parts.map((part) => (
-            <li key={`${part.walletId}-${part.network}`} className="flex flex-wrap items-center gap-x-3 gap-y-1 px-3 py-2 text-sm">
-              <span className="h-4 w-2 rounded-[2px]" style={{ backgroundColor: network(part.network).color }} aria-hidden="true" />
-              <span className="min-w-0 flex-1">
+            <li
+              key={`${part.walletId}-${part.network}`}
+              className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-3 px-3 py-2 text-sm"
+            >
+              <span className="row-span-2 h-8 w-2 rounded-[2px]" style={{ backgroundColor: network(part.network).color }} aria-hidden="true" />
+              <span className="truncate">
                 <span className="font-medium">{network(part.network).name}</span>
                 <span className="text-muted-foreground"> · {walletLabel(part.walletId)}</span>
               </span>
-              <span className="num font-mono text-xs text-muted-foreground">
-                {amount(locale, part.amount)} {pos.symbol}
-              </span>
-              <span className="num w-24 text-right font-semibold">{usd(locale, part.amount * pos.price)}</span>
+              <span className="num row-span-2 text-right font-semibold">{usd(locale, part.amount * pos.price)}</span>
+              <TokenAmount
+                value={toBaseUnits(part.amount, TOKENS[pos.symbol].decimals)}
+                decimals={TOKENS[pos.symbol].decimals}
+                symbol={pos.symbol}
+                fractionDigits={4}
+                locale={intlLocale[locale]}
+                className="col-start-2 text-xs text-muted-foreground"
+              />
             </li>
           ))}
         </ul>

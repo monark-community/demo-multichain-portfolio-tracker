@@ -30,7 +30,6 @@ export function Gate() {
             {demo.session === "rejected" ? d.common.retry : d.wallet.connect}
           </Button>
         </div>
-        <p className="text-xs text-muted-foreground">{d.common.moneyDisclaimer}</p>
       </div>
       <div className="rounded-xl border bg-card p-5 sm:p-6">
         <h2 className="text-sm font-bold">{d.gate.seesTitle}</h2>

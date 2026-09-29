@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils"
 import { ActivityRow } from "./activity-row"
 import { Delta, EmptyState, NetworkStack, PageTitle, Panel, TokenGlyph } from "./bits"
 import { useAgo, usePortfolio } from "./hooks"
+import { InfoTip } from "./info-tip"
 import { PerfChart } from "./perf-chart"
 import { StrataBand } from "./strata-band"
 import { SyncPanel } from "./sync-summary"
@@ -93,12 +94,12 @@ export function OverviewView() {
       ))}
 
       <section aria-labelledby="total-h" className="rounded-xl border bg-card">
-        <div className="grid gap-6 p-4 sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)]">
+        <div className="grid grid-cols-1 gap-6 p-4 sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)]">
           <div>
             <h2 id="total-h" className="label-mono text-muted-foreground">
               {filter ? t(d.overview.filtered, { network: network(filter).name }) : d.overview.total}
             </h2>
-            <p className="num mt-1 text-[clamp(2.1rem,6vw,3.25rem)] leading-none font-extrabold tracking-[-0.035em]" aria-live="polite">
+            <p className="[font-variant-numeric:lining-nums] mt-1 text-[clamp(2.1rem,6vw,3.25rem)] leading-none font-extrabold tracking-[-0.035em]" aria-live="polite">
               {usd(locale, p.totals.valueUsd)}
             </p>
             <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
@@ -148,7 +149,7 @@ export function OverviewView() {
         </div>
       </section>
 
-      <div className="grid gap-5 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+      <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
         <Panel
           id="perf-h"
           title={d.overview.perfTitle}
@@ -179,7 +180,7 @@ export function OverviewView() {
                 label={`${signedUsd(locale, last - first)} (${pct(locale, first ? (last - first) / first : 0, true)})`}
               />
               <span className="text-muted-foreground">{d.overview.rangeNames[range]}</span>
-              <span className="ml-auto text-xs text-muted-foreground">{d.overview.perfNote}</span>
+              <InfoTip label={d.overview.perfNote} className="ml-auto" />
             </p>
             <PerfChart
               points={points}
@@ -196,7 +197,7 @@ export function OverviewView() {
         <SyncPanel />
       </div>
 
-      <div className="grid gap-5 xl:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
         <Panel
           id="top-h"
           title={d.overview.topTitle}
@@ -253,9 +254,6 @@ export function OverviewView() {
           </ul>
         </Panel>
       </div>
-      <p className="text-xs text-muted-foreground">
-        {d.sync.pricesUpdated} · {d.common.moneyDisclaimer}
-      </p>
     </div>
   )
 }

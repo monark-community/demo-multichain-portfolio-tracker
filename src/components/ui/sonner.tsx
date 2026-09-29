@@ -1,35 +1,22 @@
 "use client"
 
 import { useTheme } from "next-themes"
-import { useSyncExternalStore } from "react"
 import { Toaster as Sonner } from "sonner"
 
 type ToasterProps = React.ComponentProps<typeof Sonner>
 
-const QUERY = "(min-width: 768px)"
-function subscribe(cb: () => void) {
-  const m = window.matchMedia(QUERY)
-  m.addEventListener("change", cb)
-  return () => m.removeEventListener("change", cb)
-}
-
 /**
- * Toasts never cover what they report on: top-right under the header on
- * desktop, above the app's bottom tab bar on phones.
+ * Toasts never cover what they report on: bottom-right on desktop, away from
+ * the content being changed; above the app's bottom tab bar on phones.
  */
 const Toaster = ({ ...props }: ToasterProps) => {
   const { resolvedTheme } = useTheme()
-  const desktop = useSyncExternalStore(
-    subscribe,
-    () => window.matchMedia(QUERY).matches,
-    () => true
-  )
 
   return (
     <Sonner
       theme={(resolvedTheme ?? "light") as ToasterProps["theme"]}
-      position={desktop ? "top-right" : "bottom-center"}
-      offset={{ top: 76, right: 20 }}
+      position="bottom-right"
+      offset={{ bottom: 24, right: 24 }}
       mobileOffset={{ bottom: "calc(84px + env(safe-area-inset-bottom))", left: 12, right: 12 }}
       className="toaster group"
       toastOptions={{

@@ -62,7 +62,7 @@ export function StrataBand({
           )
         })}
       </div>
-      <ul className={cn("grid gap-1", size === "lg" ? "sm:grid-cols-2 xl:grid-cols-3" : "grid-cols-1")}>
+      <ul className={cn("grid gap-1", size === "lg" ? "grid-cols-2 xl:grid-cols-3" : "grid-cols-1")}>
         {layers.map((l) => {
           const n = network(l.network)
           const active = selected === l.network
@@ -73,12 +73,14 @@ export function StrataBand({
                 style={{ backgroundColor: n.color }}
                 aria-hidden="true"
               />
-              <span className="min-w-0 flex-1 truncate text-left">
-                {n.name}
-                {l.stale && staleLabel && <span className="ml-1.5 text-xs font-normal text-loss">· {staleLabel}</span>}
+              <span className="min-w-0 flex-1 text-left leading-tight">
+                <span className="block truncate text-[0.8rem] text-muted-foreground">
+                  {n.name}
+                  {l.stale && staleLabel && <span className="ml-1 text-loss">· {staleLabel}</span>}
+                </span>
+                <span className="num block font-semibold">{l.valueLabel}</span>
               </span>
-              <span className="num font-semibold">{l.valueLabel}</span>
-              <span className="num w-14 text-right font-mono text-xs text-muted-foreground">{l.shareLabel}</span>
+              <span className="num shrink-0 text-right font-mono text-xs text-muted-foreground">{l.shareLabel}</span>
             </>
           )
           return (
@@ -89,7 +91,7 @@ export function StrataBand({
                   aria-pressed={active}
                   onClick={() => onSelect(active ? null : l.network)}
                   className={cn(
-                    "flex min-h-11 w-full items-center gap-2.5 rounded-md border border-transparent px-2.5 text-sm transition-colors",
+                    "flex min-h-12 w-full items-center gap-2.5 rounded-md border border-transparent px-2 py-1 text-sm transition-colors",
                     active ? "border-border bg-accent" : "hover:bg-muted",
                     selected && !active && "opacity-60"
                   )}

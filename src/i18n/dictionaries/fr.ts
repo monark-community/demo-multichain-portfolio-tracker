@@ -55,7 +55,7 @@ const fr: Dictionary = {
     hero: {
       eyebrow: "Suivi de portefeuille multichaîne",
       title: "Tous vos portefeuilles, toutes vos chaînes, un seul vrai total.",
-      sub: "MultiTrack lit vos portefeuilles sur cinq réseaux, regroupe un même actif où qu'il se trouve et vous montre ce que vous détenez, ce qu'il vous a coûté et ce qui a bougé. En lecture seule : aucune clé demandée.",
+      sub: "MultiTrack lit chaque portefeuille sur cinq réseaux et regroupe chaque actif en une seule position. En lecture seule : aucune clé demandée.",
       primary: "Ouvrir le tableau de bord",
       secondary: "Comment il lit vos chaînes",
       cardTotal: "Total sur 2 portefeuilles",
@@ -65,7 +65,7 @@ const fr: Dictionary = {
     },
     problem: {
       title: "Votre portefeuille est déjà multichaîne. Vos outils, non.",
-      body: "Trois portefeuilles, cinq réseaux et un tableur faux dès vendredi. Un explorateur montre une adresse sur une chaîne ; une plateforme d'échange, seulement ce qu'elle garde.",
+      body: "Trois portefeuilles, cinq réseaux et un tableur faux dès vendredi.",
       stats: [
         { value: "5", label: "explorateurs à consulter" },
         { value: "3", label: "portefeuilles à additionner" },
@@ -75,7 +75,7 @@ const fr: Dictionary = {
     strata: {
       eyebrow: "La bande de strates",
       title: "Chaque réseau est une strate. Votre total, c'est la roche.",
-      body: "MultiTrack dessine votre portefeuille en une seule bande. Chaque strate est un réseau, à la taille de ce que vous y détenez. Touchez une strate et tout le tableau de bord suit ; si un réseau tarde, sa strate l'indique au lieu de tomber discrètement à zéro.",
+      body: "Chaque strate est un réseau, à la taille de ce que vous y détenez. Un réseau lent le signale au lieu de tomber à zéro.",
       stale: "Périmée : dernière lecture valide il y a 2 h",
       photoAlt: "Couches inclinées de roche volcanique, chacune d'une teinte de gris ou de brun différente",
     },
@@ -118,7 +118,7 @@ const fr: Dictionary = {
     tax: {
       eyebrow: "Exports",
       title: "La saison des impôts, sans le marathon.",
-      body: "Choisissez une année et une méthode, PBR ou PEPS. MultiTrack valorise chaque cession au moment où elle a eu lieu et vous remet vos gains réalisés dans un seul CSV que votre comptable saura ouvrir.",
+      body: "Choisissez une année, PBR ou PEPS. Recevez vos gains réalisés dans un seul CSV.",
       cta: "Essayer l'export",
       photoAlt: "Une personne s'étire à son bureau, éclairée par une lampe, à la fin d'une longue journée",
       file: "multitrack-gains-realises-2025-pbr.csv",
@@ -152,37 +152,36 @@ const fr: Dictionary = {
     },
     closing: {
       title: "Ouvrez le tableau de bord. Un portefeuille vous y attend déjà.",
-      body: "Connectez le portefeuille de démo, regardez cinq réseaux se synchroniser, puis faites-en tomber un exprès pour voir comment MultiTrack réagit.",
+      body: "Connectez le portefeuille de démo, regardez cinq réseaux se synchroniser, puis faites-en tomber un exprès.",
       cta: "Ouvrir le tableau de bord",
     },
   },
   how: {
     eyebrow: "Fonctionnement",
     title: "En lecture seule par conception, franc sur la fraîcheur des données.",
-    intro:
-      "MultiTrack ne détient jamais vos actifs et ne signe jamais de transaction. Il lit les données publiques des adresses que vous suivez, réseau par réseau, en fait un seul grand livre et le valorise. Voici chaque étape, et ce qui se passe quand l'une d'elles échoue.",
+    intro: "MultiTrack lit des données publiques, réseau par réseau, et ne signe jamais rien. Voici chaque étape, et ce qui se passe quand l'une échoue.",
     pipelineTitle: "De cinq réseaux à un seul total",
     pipelineAria: "Schéma : les portefeuilles sont lus par un lecteur par réseau, normalisés, valorisés, puis affichés en un seul portefeuille",
     steps: [
       {
         title: "Portefeuilles",
-        body: "Vous connectez un portefeuille avec une identification gratuite, ou vous collez n'importe quelle adresse pour la suivre. MultiTrack garde l'adresse et un nom, rien d'autre.",
+        body: "Connectez un portefeuille avec une identification gratuite, ou collez une adresse pour la suivre.",
       },
       {
         title: "Lecteurs réseau",
-        body: "Un lecteur par réseau demande les soldes, les transferts de jetons et les événements NFT de chaque adresse suivie, et note la hauteur de bloc lue.",
+        body: "Un lecteur par réseau récupère soldes, transferts et NFT, et note le bloc lu.",
       },
       {
         title: "Normaliser",
-        body: "Les jetons sont rapprochés d'un réseau à l'autre (le tUSDC sur Base est le même actif que sur Arbitrum), les montants sont ramenés à leurs décimales et les transactions partagent un même vocabulaire.",
+        body: "Le tUSDC sur Base et sur Arbitrum devient un seul actif ; chaque transaction partage un même vocabulaire.",
       },
       {
         title: "Valoriser",
-        body: "Chaque solde reçoit un prix actuel et chaque transaction passée, le prix de son propre moment : c'est ce qu'exigent le prix de revient et les exports fiscaux.",
+        body: "Les soldes reçoivent le prix du jour ; les transactions passées, celui de leur moment.",
       },
       {
         title: "Votre vue",
-        body: "La bande de strates, les positions, l'activité et les exports sont tous des vues de ce même grand livre : les chiffres concordent toujours entre eux.",
+        body: "Bande, positions, activité et exports lisent un seul grand livre : les chiffres concordent.",
       },
     ],
     diagram: {
@@ -202,17 +201,15 @@ const fr: Dictionary = {
       items: ["Clés privées ou phrases secrètes", "Le droit de déplacer des fonds", "Approbations de jetons ou signatures au-delà de l'identification", "Des données que vous ne lui avez pas demandé de suivre"],
     },
     freshTitle: "Fraîcheur et pannes",
-    freshBody:
-      "Les réseaux tombent, les points d'accès RPC expirent, les indexeurs prennent du retard. MultiTrack affiche l'état de chaque réseau au lieu de prétendre que tout est en direct.",
+    freshBody: "Chaque réseau affiche son état réel au lieu de prétendre que tout est en direct.",
     states: [
       { name: "En file", body: "Attend son tour dans le balayage." },
       { name: "Lecture", body: "Les blocs sont lus ; le compteur montre où il en est." },
       { name: "Synchronisé", body: "Lu à un bloc et une heure connus, affichés à côté du réseau." },
-      { name: "Périmé", body: "La dernière lecture a échoué. Les soldes restent ceux de la dernière lecture valide, hachurés, avec leur heure et un bouton pour relancer." },
+      { name: "Périmé", body: "La dernière lecture a échoué. Les soldes restent ceux de la dernière lecture valide, hachurés, à relancer." },
     ],
     devTitle: "Pour les développeurs : remplacer la démo par de vraies chaînes",
-    devBody:
-      "Tout ce qui est simulé se trouve derrière une petite couche de données typée dans src/lib/demo : réseaux, soldes, activité, prix et moteur de synchronisation. Remplacez ces fonctions par des clients viem, un indexeur et une API de prix : l'interface ne change pas.",
+    devBody: "Tout ce qui est simulé passe par une couche de données typée dans src/lib/demo. Remplacez-la par viem, un indexeur et une API de prix ; l'interface reste.",
     devRepo: "Lire le code source",
     cta: "Le voir fonctionner dans la démo",
   },
@@ -237,8 +234,7 @@ const fr: Dictionary = {
   pricing: {
     eyebrow: "Interne · non lié",
     title: "Gratuit pour regarder, payant pour déclarer.",
-    intro:
-      "Consulter un portefeuille reste gratuit : c'est ce qu'on attend d'un outil de suivi, et c'est ainsi qu'on gagne la confiance. MultiTrack fait payer là où la valeur est concrète : la saison des impôts et la tenue de registres. Il est en lecture seule, donc aucun frais de transaction à prélever.",
+    intro: "Consulter reste gratuit ; MultiTrack fait payer là où la valeur est concrète : les impôts et la tenue de registres.",
     perMonth: "/ mois",
     popular: "Là où se fait le revenu",
     tiers: [
@@ -293,7 +289,7 @@ const fr: Dictionary = {
     gate: {
       eyebrow: "Identification en lecture seule",
       title: "Tous vos portefeuilles au même endroit",
-      body: "Connectez un portefeuille de démo pour vous identifier en lecture seule. MultiTrack lira cinq réseaux de test et construira votre portefeuille.",
+      body: "Identifiez-vous en lecture seule avec le portefeuille de démo. MultiTrack lit cinq réseaux de test.",
       seesTitle: "Ce que MultiTrack verra",
       sees: ["Votre adresse publique", "Soldes et historique sur 5 réseaux de test", "Jamais vos clés, jamais vos fonds"],
       rejected: "Vous avez refusé l'identification. Rien n'a été partagé.",
@@ -485,7 +481,6 @@ const fr: Dictionary = {
       emptyBody: "Collez une adresse ci-dessous pour la suivre. Le suivi ne demande aucune signature.",
       form: {
         title: "Suivre un autre portefeuille",
-        body: "Collez n'importe quelle adresse pour la suivre en lecture seule. MultiTrack la cherche sur chaque réseau.",
         address: "Adresse du portefeuille",
         placeholder: "0x…",
         samples: "Essayez un exemple",
@@ -500,7 +495,6 @@ const fr: Dictionary = {
         found: "Activité trouvée sur {count} réseaux · {value}",
         foundOne: "Activité trouvée sur 1 réseau · {value}",
         empty: "Aucune activité sur les réseaux pris en charge.",
-        emptyBody: "Elle est peut-être neuve, ou utilisée sur un réseau que MultiTrack ne lit pas encore.",
         failed: "Impossible de joindre {network}. Réessayez dans un instant.",
         retryLookup: "Relancer la recherche",
         name: "Donnez-lui un nom",
@@ -514,15 +508,14 @@ const fr: Dictionary = {
     },
     export: {
       title: "Export fiscal",
-      intro: "Un relevé propre de l'année, valorisé au moment de chaque transaction.",
       year: "Année d'imposition",
       yearToDate: "{year} à ce jour",
       wallets: "Portefeuilles",
       method: "Méthode du prix de revient",
       acb: "PBR (coût moyen)",
-      acbBody: "Regroupe chaque achat d'un actif en un seul coût moyen. Méthode utilisée au Canada.",
+      acbBody: "Un coût moyen par actif. Utilisé au Canada.",
       fifo: "PEPS",
-      fifoBody: "Premier entré, premier sorti : les unités les plus anciennes sont vendues d'abord. Utilisée aux États-Unis et ailleurs.",
+      fifoBody: "Les unités les plus anciennes partent d'abord. Utilisé aux États-Unis.",
       report: "Rapport",
       kinds: {
         gains: "Gains réalisés",
@@ -542,7 +535,6 @@ const fr: Dictionary = {
         compute: "Calcul des gains selon la méthode {method}",
       },
       failedTitle: "{count} transactions n'avaient pas de prix au moment voulu.",
-      failedBody: "La source de prix avait un trou pour ces heures-là. Vous pouvez utiliser le prix horaire le plus proche ; le rapport le mentionnera.",
       useNearest: "Utiliser le prix horaire le plus proche et relancer",
       readyTitle: "Votre rapport est prêt",
       readyBody: "{rows} lignes · {file}",

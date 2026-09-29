@@ -10,6 +10,8 @@ import { useDict } from "@/i18n/provider"
 import { useDemo } from "@/lib/demo/store"
 import { cn } from "@/lib/utils"
 
+import { DemoChip } from "@/components/site/demo-chip"
+
 import { DemoControlsButton } from "./demo-controls"
 import { Gate } from "./gate"
 import { SyncSummary } from "./sync-summary"
@@ -69,14 +71,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </ul>
             </nav>
             <SyncSummary />
-            <div className="mt-auto space-y-3">
+            <div className="mt-auto">
               <DemoControlsButton className="w-full" />
-              <p className="label-mono text-muted-foreground">{d.common.demoBadge}</p>
             </div>
           </aside>
           <div className="min-w-0 flex-1">
             <div className="mb-4 flex items-center justify-between gap-3 lg:hidden">
-              <span className="label-mono rounded-full border px-2.5 py-1 text-muted-foreground">{d.common.demoBadge}</span>
+              <DemoChip label={d.common.demoBadge} />
               <DemoControlsButton compact />
             </div>
             {children}

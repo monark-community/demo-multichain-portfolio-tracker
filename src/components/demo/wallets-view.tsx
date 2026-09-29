@@ -123,7 +123,6 @@ export function WalletsView() {
       <div ref={formRef} className="scroll-mt-24">
         <AddWalletForm existing={demo.wallets} />
       </div>
-      <p className="text-xs text-muted-foreground">{d.common.moneyDisclaimer}</p>
 
       <EditDialog wallet={editing} onClose={() => setEditing(null)} />
       <Dialog open={!!removing} onOpenChange={(o) => !o && setRemoving(null)}>
@@ -289,7 +288,6 @@ function AddWalletForm({ existing }: { existing: TrackedWallet[] }) {
         <h2 id={`${id}-h`} className="font-bold">
           {F.title}
         </h2>
-        <p className="text-sm text-muted-foreground">{F.body}</p>
       </div>
       <div className="space-y-4 p-4">
         <form
@@ -401,7 +399,6 @@ function AddWalletForm({ existing }: { existing: TrackedWallet[] }) {
             ) : (
               <div role="status">
                 <p className="font-semibold">{F.empty}</p>
-                <p className="text-sm text-muted-foreground">{F.emptyBody}</p>
               </div>
             )}
             <div className="space-y-1.5">

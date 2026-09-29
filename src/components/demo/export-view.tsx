@@ -13,6 +13,7 @@ import { signedUsd, usd } from "@/lib/format"
 import { cn } from "@/lib/utils"
 
 import { Delta, PageTitle } from "./bits"
+import { InfoTip } from "./info-tip"
 import { usePortfolio } from "./hooks"
 
 type Phase =
@@ -80,8 +81,8 @@ export function ExportView() {
 
   return (
     <div className="space-y-5">
-      <PageTitle title={E.title} sub={E.intro} />
-      <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+      <PageTitle title={E.title} />
+      <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
         <form
           className="space-y-5 rounded-xl border bg-card p-4 sm:p-5"
           onSubmit={(e) => {
@@ -147,10 +148,8 @@ export function ExportView() {
                 <label key={k} className={radioCard(kind === k, "items-start gap-3 p-3")}>
                   <input type="radio" name={`${id}-kind`} className="sr-only" checked={kind === k} onChange={() => setKind(k)} />
                   <FileSpreadsheetIcon className="mt-0.5 size-4 shrink-0 text-ochre-ink" aria-hidden="true" />
-                  <span>
-                    <span className="block text-sm font-bold">{E.kinds[k]}</span>
-                    <span className="block text-xs text-muted-foreground">{E.kindsBody[k]}</span>
-                  </span>
+                  <span className="text-sm font-bold">{E.kinds[k]}</span>
+                  <InfoTip label={E.kindsBody[k]} className="ml-auto" />
                 </label>
               ))}
             </div>
@@ -160,7 +159,6 @@ export function ExportView() {
               {busy && <Loader2Icon className="animate-spin" aria-hidden="true" />}
               {E.generate}
             </Button>
-            <p className="text-xs text-muted-foreground">{d.common.taxDisclaimer}</p>
           </div>
         </form>
 
@@ -203,7 +201,6 @@ export function ExportView() {
                 <CircleAlertIcon className="mt-0.5 size-5 shrink-0" aria-hidden="true" />
                 {t(E.failedTitle, { count: phase.count })}
               </p>
-              <p className="text-sm text-muted-foreground">{E.failedBody}</p>
               <div className="flex flex-wrap gap-2">
                 <Button onClick={() => void generate(true)}>{E.useNearest}</Button>
                 <Button variant="outline" onClick={() => setPhase({ k: "form" })}>

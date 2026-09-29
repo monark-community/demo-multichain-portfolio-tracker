@@ -1,4 +1,4 @@
-import { ArrowRightIcon, CheckIcon, XIcon } from "lucide-react"
+import { ArrowRightIcon, CheckIcon, PlusIcon, XIcon } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
@@ -84,7 +84,7 @@ export default async function HowPage({ params }: PageProps<"/[locale]/how-it-wo
       </section>
 
       <section className="border-b">
-        <div className="mx-auto grid max-w-[1320px] gap-10 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-[1fr_1.4fr]">
+        <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-10 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-[1fr_1.4fr]">
           <div>
             <h2 className="text-[clamp(1.6rem,3vw,2.25rem)] font-extrabold tracking-[-0.03em]">{h.freshTitle}</h2>
             <p className="mt-3 text-lg text-muted-foreground">{h.freshBody}</p>
@@ -107,8 +107,25 @@ export default async function HowPage({ params }: PageProps<"/[locale]/how-it-wo
         </div>
       </section>
 
+      <section className="border-b">
+        <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-8 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-[1fr_1.6fr]">
+          <h2 className="text-[clamp(1.6rem,3vw,2.25rem)] font-extrabold tracking-[-0.03em]">{dict.home.faq.title}</h2>
+          <div className="divide-y border-y">
+            {dict.home.faq.items.map((f) => (
+              <details key={f.q} className="group">
+                <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 text-left font-semibold [&::-webkit-details-marker]:hidden">
+                  {f.q}
+                  <PlusIcon className="size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-45" aria-hidden="true" />
+                </summary>
+                <p className="pb-5 text-muted-foreground">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section>
-        <div className="mx-auto grid max-w-[1320px] gap-8 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+        <div className="mx-auto grid max-w-[1320px] grid-cols-1 gap-8 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-[1.4fr_1fr] lg:items-end">
           <div className="rounded-xl border bg-foreground p-6 text-background sm:p-8">
             <h2 className="text-xl font-extrabold">{h.devTitle}</h2>
             <p className="mt-3 opacity-85">{h.devBody}</p>
@@ -138,7 +155,6 @@ export default async function HowPage({ params }: PageProps<"/[locale]/how-it-wo
                 <ArrowRightIcon aria-hidden="true" />
               </Link>
             </Button>
-            <p className="mt-3 text-xs text-muted-foreground">{dict.common.moneyDisclaimer}</p>
           </div>
         </div>
       </section>

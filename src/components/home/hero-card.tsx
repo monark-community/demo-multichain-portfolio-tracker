@@ -55,7 +55,7 @@ export function HeroCard({
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="label-mono text-muted-foreground">{labels.total}</p>
-          <p className="num mt-1 text-[clamp(2rem,5vw,2.9rem)] leading-none font-extrabold tracking-[-0.035em]" aria-hidden="true">
+          <p className="[font-variant-numeric:lining-nums] mt-1 text-[clamp(2rem,5vw,2.9rem)] leading-none font-extrabold tracking-[-0.035em]" aria-hidden="true">
             {shown}
           </p>
           <p className="sr-only">{totalLabel}</p>

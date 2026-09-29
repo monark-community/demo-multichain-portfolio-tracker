@@ -66,6 +66,7 @@ export function WalletPrompt() {
               {d.prompt.waiting}
             </p>
           )}
+          <p className="text-xs text-muted-foreground">{d.common.moneyDisclaimer}</p>
           <div className="grid grid-cols-2 gap-2">
             <Button variant="outline" onClick={() => rejectConnect()} disabled={busy}>
               {d.prompt.reject}

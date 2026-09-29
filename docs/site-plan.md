@@ -48,8 +48,8 @@ Supporting benefits (outcomes):
 
 - **Headline (EN):** Every wallet, every chain, one honest number. *(7 words)*
 - **Headline (FR):** Tous vos portefeuilles, toutes vos chaînes, un seul vrai total.
-- **Subheadline (EN):** MultiTrack reads your wallets on five networks, merges the same asset wherever it lives and shows what you own, what it cost and what changed. Read-only: it never asks for a key.
-- **Subheadline (FR):** MultiTrack lit vos portefeuilles sur cinq réseaux, regroupe un même actif où qu'il se trouve et vous montre ce que vous détenez, ce qu'il vous a coûté et ce qui a bougé. En lecture seule : aucune clé demandée.
+- **Subheadline (EN):** MultiTrack reads every wallet on five networks and merges each asset into one position. Read-only: it never asks for a key. *(21 words)*
+- **Subheadline (FR):** MultiTrack lit chaque portefeuille sur cinq réseaux et regroupe chaque actif en une seule position. En lecture seule : aucune clé demandée.
 - **Primary CTA:** "Open the demo dashboard" / « Ouvrir le tableau de bord » → `/{locale}/app`
 - **Secondary CTA:** "How it reads your chains" / « Comment il lit vos chaînes » → `/{locale}/how-it-works`
 - **Hero visual:** a live product card built in code, not a picture. The total value counts up, the **strata band** (one horizontal band, one layer per network) settles into place, three merged positions list their per-network split, and a sync line reads "5 networks · synced just now". Why: the product's core idea (many layers, one total) is visible in two seconds, and it is the real component used in the app, so the page never oversells.
@@ -60,22 +60,24 @@ All routes live under `/{locale}` (`en`, `fr`); `/` redirects to the visitor's p
 
 | Route | Purpose | Sections in order |
 |-|-|-|
-| `/` (home) | Explain the product and send people into the demo | Hero with live strata card · "Already multichain" problem strip · Strata section (rock photo, "every network is a layer") · Four feature highlights with mini UIs · Tax-season section (photo + export preview) · FAQ · Closing CTA |
+| `/` (home) | Explain the product and send people into the demo | Hero with live strata card, then exactly five sections: "Already multichain" strip (one line + three numbers) · Strata section (rock photo) · Three feature cards with mini UIs · Tax-season section (photo + export file card) · Closing CTA |
 | `/app` | Overview dashboard (connect gate when disconnected) | Connect gate or: header (total, change, sync line) · strata band filter · performance chart (7D/30D/90D/1Y) · top positions · sync panel · recent activity |
 | `/app/holdings` | All positions, NFTs | Filter bar (network, wallet, tag, hide dust, sort) · positions table with expandable per-network split and tag control · NFTs grid tab |
 | `/app/activity` | Normalized history | Filters (type, network, wallet, search) · grouped-by-day list · load more · transaction detail sheet |
 | `/app/wallets` | Manage tracked wallets | Wallet list (label, tag, networks, value, remove) · add-wallet form with lookup |
 | `/app/export` | Tax and records export | Form (year, wallets, cost-basis method, report type) · generation progress · preview and download |
-| `/how-it-works` | Credibility for the developer and student audience: how read-only aggregation, normalization, pricing and failure handling work. It needs its own page because it is long-form and diagram-led, and the home page must stay short. | Intro · pipeline diagram (wallets → network readers → normalize → price → your view) · read-only promise (what it reads, what it never touches) · freshness and failures · "Swap the demo for real chains" developer note · CTA |
+| `/how-it-works` | Credibility for the developer and student audience: how read-only aggregation, normalization, pricing and failure handling work. It holds the mechanics so the home page stays short. | Intro · pipeline diagram (wallets → network readers → normalize → price → your view) · read-only promise (reads / never) · freshness and failures · FAQ (5 questions, only here) · "Swap the demo for real chains" developer note · CTA |
 | `/credits` | Photo credits (required by the asset rules) | Photo list with photographers and links |
 | `/pricing` | Internal strategy review only. **Never linked**, excluded from the sitemap, `robots: noindex, nofollow`. | Three tiers · reasoning |
 | 404 | Friendly not-found in both languages | Message · links home and to the demo |
 
-**Header:** wordmark (left) · links: Product (home), How it works, Demo · EN/FR switch · theme toggle · primary pill "Open the demo". In the app, the header action becomes the `connect-wallet` component plus a "Demo · simulated data" badge. Mobile: wordmark + menu button opening a full-height sheet.
+**Header** (the only bar on every page): wordmark (left) · links: Product (home), How it works, Demo · "Demo · simulated data" chip (lg and up) · EN/FR switch · theme toggle · primary pill "Open the demo". In the app, the action becomes the `connect-wallet` component. Mobile: wordmark, theme toggle and a menu button opening a full-height sheet (links, Demo chip, EN/FR, action).
 
-**App navigation:** left rail on desktop (Overview, Holdings, Activity, Wallets, Export, then Demo controls); a five-tab bottom bar on mobile, with safe-area padding.
+**App navigation:** left rail on desktop (Overview, Holdings, Activity, Wallets, Export, a compact sync summary, then Demo controls); a five-tab bottom bar on mobile, with safe-area padding, and one compact strip at the top of the app (Demo chip + Demo controls button).
 
-**Footer:** one-line product description · links (Product, How it works, Demo, Credits, GitHub repo, project page on monark.io) · "Demo · simulated data" and "Testnet demo · not financial advice · no real funds" · "Built with Monark" credit (small, muted, links to monark.io) · photo credit link.
+**Footer:** one-line product description · links (Product, How it works, Demo, Photo credits, GitHub repo, project page on monark.io) · "Demo · simulated data" · "Built with Monark" credit (small, muted, links to monark.io).
+
+**Disclaimers (guidelines §11):** "Demo · simulated data" lives in the header chip and the footer only. MultiTrack never moves value, so "Testnet demo · not financial advice · no real funds" appears once, in the wallet sign-in confirmation, and "Not tax advice" once, on the finished export.
 
 ## 5. Feature highlights
 
@@ -85,7 +87,7 @@ All routes live under `/{locale}` (`en`, `fr`); `/` redirects to the visitor's p
 | **Merged positions** | One asset is one position, with its per-network and per-wallet split | Home features; `/app/holdings` | Flow 3 |
 | **Visible sync** | Know how fresh each number is; a network that fails never silently zeroes your balance | Home features; `/app` sync panel; `/how-it-works` | Flow 1 (a network fails, retry) |
 | **Wallet and horizon tags** | Separate cold storage from trading, long-term from short-term | Home features; `/app/wallets`, `/app/holdings` | Flow 2, Flow 3 |
-| **Normalized activity** | One history across networks, with gas, searchable | `/app/activity` | Flow 4 |
+| **Normalized activity** | One history across networks, with gas, searchable | `/app/activity` (dropped from the home cards to keep three) | Flow 4 |
 | **Tax-ready export** | Realized gains with ACB or FIFO, ready for an accountant | Home tax section; `/app/export` | Flow 5 |
 
 ## 6. Key flows
@@ -125,9 +127,9 @@ All latency is simulated (400 ms to 2.5 s per step, slower with the "Slow networ
 **Flow 5 · Export for taxes**
 1. `/app/export`: choose tax year (2025 or 2026 to date), wallets, cost-basis method (ACB or FIFO) and report (realized gains, all transactions, year-end holdings).
 2. *Generate report* → **pending** steps: "Gathering 214 transactions" → "Pricing each one at its time" → "Computing gains with ACB".
-3. **Confirmed:** summary (proceeds, cost basis, realized gain, short-term vs long-term), a 5-row preview, *Download CSV* (a real file generated in the browser).
-4. **Failed:** with *Fail the next export*, pricing fails → "3 transactions had no price at their time." → *Use the nearest hourly price and retry* → confirmed.
-5. Every export view carries "Not tax advice. Check with a professional."
+3. **Confirmed:** summary (transactions, disposals, gas paid, proceeds, cost basis, realized gain), a 5-row preview, *Download CSV* (a real file generated in the browser).
+4. **Failed:** with *Fail the next export*, pricing fails → "3 transactions had no price at their time." → *Use the nearest hourly price and retry* → confirmed (the result notes that 3 prices are nearest-hour).
+5. The finished report carries "Not tax advice. Check with a professional." once.
 
 ## 7. Content (EN / FR)
 
@@ -146,37 +148,37 @@ Tone: calm, exact, a little dry. Short sentences, numbers over adjectives, no hy
 
 ### Home
 
-**Problem strip.** EN heading: "Your portfolio is already multichain. Your tools aren't." Body: "Three wallets, five networks, one spreadsheet that's wrong by Friday. Explorers show one address on one chain; exchanges show only what they hold." Stats: "5 explorers to check" · "3 wallets to add up" · "0 cost basis anywhere".
-FR heading: « Votre portefeuille est déjà multichaîne. Vos outils, non. » Body : « Trois portefeuilles, cinq réseaux et un tableur faux dès vendredi. Un explorateur montre une adresse sur une chaîne ; une plateforme d'échange, seulement ce qu'elle garde. » Stats : « 5 explorateurs à consulter » · « 3 portefeuilles à additionner » · « 0 prix de revient nulle part ».
+**Problem strip.** EN heading: "Your portfolio is already multichain. Your tools aren't." Line: "Three wallets, five networks, one spreadsheet that's wrong by Friday." Stats: "5 explorers to check" · "3 wallets to add up" · "0 cost basis anywhere".
+FR heading : « Votre portefeuille est déjà multichaîne. Vos outils, non. » Ligne : « Trois portefeuilles, cinq réseaux et un tableur faux dès vendredi. » Stats : « 5 explorateurs à consulter » · « 3 portefeuilles à additionner » · « 0 prix de revient nulle part ».
 
-**Strata section.** EN heading: "Every network is a layer. Your total is the rock." Body: "MultiTrack draws your portfolio as one band. Each layer is a network, sized by what you hold there. Tap a layer and the whole dashboard follows; if a network is slow, its layer says so instead of quietly dropping to zero."
-FR heading: « Chaque réseau est une strate. Votre total, c'est la roche. » Body : « MultiTrack dessine votre portefeuille en une seule bande. Chaque strate est un réseau, à la taille de ce que vous y détenez. Touchez une strate et tout le tableau de bord suit ; si un réseau tarde, sa strate l'indique au lieu de tomber discrètement à zéro. »
+**Strata section.** EN heading: "Every network is a layer. Your total is the rock." Line: "Each layer is a network, sized by what you hold there. A slow network says so instead of dropping to zero."
+FR heading : « Chaque réseau est une strate. Votre total, c'est la roche. » Ligne : « Chaque strate est un réseau, à la taille de ce que vous y détenez. Un réseau lent le signale au lieu de tomber à zéro. »
 
 **Features.**
 1. EN "One asset, one line" — "tUSDC on four networks is a single position. Open it to see where each dollar sits and what it cost." / FR « Un actif, une ligne » — « Du tUSDC sur quatre réseaux, c'est une seule position. Ouvrez-la pour voir où dort chaque dollar et ce qu'il vous a coûté. »
 2. EN "Sync you can see" — "Every network shows its block height and last read. A failed read is flagged and retried, never hidden." / FR « Une synchro visible » — « Chaque réseau affiche sa hauteur de bloc et sa dernière lecture. Une lecture ratée est signalée et relancée, jamais masquée. »
 3. EN "Tags that mean something" — "Label wallets as cold storage or trading, positions as long- or short-term, and filter everything by them." / FR « Des étiquettes utiles » — « Classez vos portefeuilles (épargne à froid, trading) et vos positions (long ou court terme), puis filtrez tout en fonction. »
-4. EN "History that reads like a ledger" — "Sends, swaps, bridges and mints from every network in one timeline, with the gas you paid." / FR « Un historique qui se lit comme un grand livre » — « Envois, échanges, ponts et frappes de tous les réseaux dans une seule chronologie, avec les frais de gaz payés. »
+4. *(Written but not shown on the home page, which keeps three cards.)* EN "History that reads like a ledger" — "Sends, swaps, bridges and mints from every network in one timeline, with the gas you paid." / FR « Un historique qui se lit comme un grand livre » — « Envois, échanges, ponts et frappes de tous les réseaux dans une seule chronologie, avec les frais de gaz payés. »
 
-**Tax section.** EN heading: "Tax season, minus the marathon." Body: "Pick a year and a method, ACB or FIFO. MultiTrack prices every disposal at its time and hands you realized gains in one CSV your accountant can open." CTA: "Try the export". FR heading : « La saison des impôts, sans le marathon. » Body : « Choisissez une année et une méthode, PBR ou PEPS. MultiTrack valorise chaque cession au moment où elle a eu lieu et vous remet vos gains réalisés dans un seul CSV que votre comptable saura ouvrir. » CTA : « Essayer l'export ».
+**Tax section.** EN heading: "Tax season, minus the marathon." Line: "Pick a year and ACB or FIFO. Get realized gains in one CSV." CTA: "Try the export". FR heading : « La saison des impôts, sans le marathon. » Ligne : « Choisissez une année, PBR ou PEPS. Recevez vos gains réalisés dans un seul CSV. » CTA : « Essayer l'export ».
 
-**FAQ.**
+**FAQ** (shown on `/how-it-works` only).
 1. EN "Does MultiTrack need my private key or seed phrase?" — "Never. It reads public blockchain data for the addresses you give it. Connecting a wallet only proves the address is yours; it can't move anything." / FR « MultiTrack a-t-il besoin de ma clé privée ou de ma phrase secrète ? » — « Jamais. Il lit les données publiques des adresses que vous lui donnez. Connecter un portefeuille prouve seulement que l'adresse est à vous ; rien ne peut être déplacé. »
 2. EN "Which networks does it read?" — "The demo reads five testnets: Ethereum Sepolia, Base Sepolia, Arbitrum Sepolia, Optimism Sepolia and Polygon Amoy. Adding a network means adding one reader, not a new app." / FR « Quels réseaux sont lus ? » — « La démo lit cinq testnets : Ethereum Sepolia, Base Sepolia, Arbitrum Sepolia, Optimism Sepolia et Polygon Amoy. Ajouter un réseau, c'est ajouter un lecteur, pas une nouvelle application. »
 3. EN "What happens when a network is down?" — "Its layer is marked stale and keeps the last good balances, with the time of that read. Nothing drops to zero without telling you." / FR « Que se passe-t-il quand un réseau est en panne ? » — « Sa strate est marquée comme périmée et garde les derniers soldes valides, avec l'heure de cette lecture. Rien ne tombe à zéro sans vous prévenir. »
 4. EN "Is the export tax advice?" — "No. It is a clean record of what happened, priced at the time. Tax rules differ by country; check with a professional." / FR « L'export est-il un conseil fiscal ? » — « Non. C'est un relevé propre de ce qui s'est passé, valorisé au bon moment. Les règles varient selon les pays ; consultez un professionnel. »
 5. EN "Is any of this real?" — "Not yet. This is a demo on simulated testnet data: no real wallet, no real funds. The data layer is built to be swapped for live network readers." / FR « Est-ce que tout ça est réel ? » — « Pas encore. C'est une démo sur des données de testnet simulées : aucun vrai portefeuille, aucun fonds réel. La couche de données est conçue pour être remplacée par de vrais lecteurs réseau. »
 
-**Closing CTA.** EN "Open the dashboard. It already has a portfolio in it." / FR « Ouvrez le tableau de bord. Un portefeuille vous y attend déjà. »
+**Closing CTA.** EN "Open the dashboard. It already has a portfolio in it." Line: "Connect the demo wallet, watch five networks sync, then break one on purpose." / FR « Ouvrez le tableau de bord. Un portefeuille vous y attend déjà. » Ligne : « Connectez le portefeuille de démo, regardez cinq réseaux se synchroniser, puis faites-en tomber un exprès. »
 
 ### App (key strings)
 
 | Where | EN | FR |
 |-|-|-|
 | Gate heading | See every wallet in one place | Tous vos portefeuilles au même endroit |
-| Gate body | Connect a demo wallet to sign in read-only. MultiTrack will read five test networks and build your portfolio. | Connectez un portefeuille de démo pour vous identifier en lecture seule. MultiTrack lira cinq réseaux de test et construira votre portefeuille. |
+| Gate body | Sign in read-only with the demo wallet. MultiTrack reads five test networks. | Identifiez-vous en lecture seule avec le portefeuille de démo. MultiTrack lit cinq réseaux de test. |
 | Gate action | Connect demo wallet | Connecter le portefeuille démo |
-| Wallet prompt | MultiTrack asks you to sign in. This signature is free and can't move funds. | MultiTrack vous demande de vous identifier. Cette signature est gratuite et ne peut déplacer aucun fonds. |
+| Wallet prompt | MultiTrack asks you to sign in. This signature is free and can't move funds. (+ the testnet / not financial advice line, once) | MultiTrack vous demande de vous identifier. Cette signature est gratuite et ne peut déplacer aucun fonds. (+ la mention testnet, une fois) |
 | Rejected | You declined the sign-in. Nothing was shared. | Vous avez refusé l'identification. Rien n'a été partagé. |
 | Sync pending | Reading {network}… block {block} | Lecture de {network}… bloc {block} |
 | Sync failed | {network} didn't answer. Its balances are from the last good read, {time}. | {network} n'a pas répondu. Ses soldes datent de la dernière lecture valide, {time}. |
@@ -302,3 +304,13 @@ Model: **free viewer, paid ledger.** Viewing a portfolio must be free: that is h
 - **Performance chart** plots the value of current holdings over time (honestly labelled), not a reconstructed historical balance.
 - **Cost basis** defaults to ACB (average cost), the Canadian rule, with FIFO as an option.
 - **Locales** format numbers and dates with `en-CA` and `fr-CA`.
+
+## Restraint pass (owner feedback)
+
+After the first build, the site was cut down to the guidelines' "Restraint" rules:
+
+- Home: hero line shortened to 21 words, the hero's demo label removed, one short line per section, three feature cards instead of four, FAQ moved to `/how-it-works`, tax disclaimer removed from the home page. Five sections between hero and footer.
+- How it works: intro, step cards (≤ 20 words each), freshness and developer copy shortened; it now holds the only FAQ.
+- Disclaimers: one Demo chip in the header and one line in the footer; the testnet line only in the sign-in confirmation; "Not tax advice" only on the finished export. Removed from the footer, the gate, the overview footnote, the wallets page and the export form.
+- App: no paragraph above the add-wallet form; empty and failed states are one line plus an action; the export page lost its intro, the report explanations moved behind info icons, the ACB/FIFO notes were cut to a few words; the chart's "today's holdings priced over the period" note sits behind an info icon; the app keeps one compact strip (Demo chip + controls) on mobile.
+- Toasts sit bottom-right on desktop and above the tab bar on mobile, away from the header and the rows they report on.

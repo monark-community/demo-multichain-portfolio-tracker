@@ -5,7 +5,9 @@
   "description": "MultiTrack: one reconciled, read-only view of every wallet on every network, with cost basis, history and tax-ready exports (simulated testnet demo).",
   "scripts": {
     "dev": "next dev -p 3148",
+    "prebuild": "node scripts/check-node.mjs",
     "build": "next build",
+    "prestart": "node scripts/check-node.mjs",
     "start": "next start -p 3148",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",

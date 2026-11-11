@@ -10,7 +10,7 @@ This repository is the demo site: a Next.js app where every network read, price 
 
 ## Run it locally
 
-Requirements: Node 22 and pnpm 10.
+Requirements: Node 22.23.4 or newer on the 22 line and pnpm 10.
 
 ```bash
 pnpm install
@@ -89,4 +89,4 @@ pnpm screenshots              # in another; ONLY=en-390-light limits the run
 
 ## Deploy to Vercel
 
-Import the repository in Vercel and deploy with the framework defaults (Next.js, `pnpm install`, `pnpm build`). No `vercel.json` and no environment variables are required. The Node version is pinned in `package.json` (`engines.node`).
+Import the repository in Vercel and deploy with the framework defaults (Next.js, `pnpm install`, `pnpm build`). No `vercel.json` and no environment variables are required. The Node version is pinned to the 22 line in `package.json` (`engines.node`). `pnpm build` and `pnpm start` stop on a Node release exposed to CVE-2026-111497, so use 22.23.4 or newer.
